@@ -1,28 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './Pages/Login';
-import Home from './Pages/HomePage';
-import PrivateRoute from './Components/PrivateRoute';
-import { AuthProvider } from './Services/AuthService';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Home from "./Pages/HomePage";
+// import PrivateRoute from "./Components/PrivateRoute";
+import { AuthProvider } from "./Services/AuthService";
 
 function App() {
-  
-
   return (
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<PrivateRoute />}>
-            <Route path="" element={<Home />} />
-          </Route>
-          {/* redirect to login if there is no path that matches */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </AuthProvider>
     </Router>
   );
 }
 
-export default App
+export default App;
