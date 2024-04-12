@@ -18,6 +18,9 @@ function Home() {
           <li>
             <NavLink to="/home">Home</NavLink>
           </li>
+          <li>
+            <NavLink to="/allplans">Our Plans</NavLink>
+          </li>
           {isLoggedIn() ? (
             <>
               {/* <li>

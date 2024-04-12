@@ -8,7 +8,7 @@ import {
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/HomePage";
-// import PrivateRoute from "./Components/PrivateRoute";
+import OurPlans from "./Pages/OurPlans";
 import { AuthProvider } from "./Services/AuthService";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/allplans" element={<OurPlans />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
