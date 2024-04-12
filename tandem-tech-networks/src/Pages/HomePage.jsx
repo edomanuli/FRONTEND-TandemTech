@@ -23,9 +23,9 @@ function Home() {
           </li>
           {isLoggedIn() ? (
             <>
-              {/* <li>
-                <NavLink to="/profile">Profile</NavLink>
-              </li> */}
+              <li>
+                <NavLink to="/account">Account</NavLink>
+              </li>
               <li>
                 <button onClick={handleLogout}>Log Out</button>
               </li>
