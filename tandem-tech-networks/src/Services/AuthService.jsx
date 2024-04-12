@@ -16,8 +16,12 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(null);
   }
 
+  const isLoggedIn = () => {
+    return authToken !== null;
+  }
+
   return (
-    <AuthContext.Provider value={{ authToken, setLoginToken, removeLoginToken }}>
+    <AuthContext.Provider value={{ authToken, setLoginToken, removeLoginToken, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
