@@ -15,6 +15,10 @@ const OurPlans = () => {
         getPlans();
     }, []);
 
+    const handleButtonClick = (id) => {
+      console.log(`Button Clicked with ID: ${id}`);
+    };
+
     if (isLoading) return <h1>Loading...</h1>;
     return (
       <>
@@ -30,6 +34,7 @@ const OurPlans = () => {
                 <p>
                   <strong>Plan Description:</strong> {plan.description}
                 </p>
+                <button onClick={() => handleButtonClick(plan.id)}>Purchase Plan</button>
               </li>
             ))}
           </ul>
