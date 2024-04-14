@@ -1,47 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../Services/AuthService";
+import Header from "./Header";
 
 function Home() {
-  const { removeLoginToken, isLoggedIn } = useAuth();
-
-  const handleLogout = () => {
-    removeLoginToken();
-  };
-  
   
   return (
     <>
+      <Header />
       <h1>Welcome to TandemTech Networks</h1>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/home">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/allplans">Our Plans</NavLink>
-          </li>
-          {isLoggedIn() ? (
-            <>
-              <li>
-                <NavLink to="/account">Account</NavLink>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li>
-                <NavLink to="/register">Register</NavLink>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+      <h2>
+        We provide the best in home internet service. Check out our plans to
+        see what we offer.
+      </h2>
     </>
   );
 }
