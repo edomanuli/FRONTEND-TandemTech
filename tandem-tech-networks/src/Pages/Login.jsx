@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Services/AuthService";
+import Header from "./Header";
 
 
 const Login = () => {
@@ -25,6 +26,7 @@ const Login = () => {
 
   return (
     <div>
+      <Header />
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
