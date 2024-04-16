@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useAuth } from "./AuthService";
 
-const AddPlanButton = ({ planInfoId }) => {
+const AddPlanButton = ({ planInfoId, onPlanAdd }) => {
   const { authToken } = useAuth();
 
   const handleAddPlanClick = async () => {
@@ -25,6 +25,7 @@ const AddPlanButton = ({ planInfoId }) => {
       console.log("Response: ", response.data);
     } catch (error) {
       alert("An error occurred while adding the plan.");
+      onPlanAdd();
       console.error(
         "Error: ",
         error.response ? error.response.data : "No response"

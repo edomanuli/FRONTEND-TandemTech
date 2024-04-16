@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const UserPlan = async (authToken) => {
   if (!authToken) {
     console.error("No auth token available.");

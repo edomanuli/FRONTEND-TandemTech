@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Services/AuthService";
 import Header from "./Header";
+import Footer from "./Footer";
 
 
 const Login = () => {
@@ -42,7 +43,7 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-      
+      <Footer />
     </div>
   );
 }

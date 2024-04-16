@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function Home() {
   
@@ -7,10 +8,11 @@ function Home() {
     <>
       <Header />
       <h1>Welcome to TandemTech Networks</h1>
-      <h2>
+      <h3>
         We provide the best in home internet service. Check out our plans to
         see what we offer.
-      </h2>
+      </h3>
+      <Footer />
     </>
   );
 }
