@@ -33,7 +33,7 @@ const AddPlanButton = ({ planInfoId, onPlanAdd }) => {
     }
   };
 
-  return <button onClick={handleAddPlanClick}>Add Plan</button>;
+  return <button className="add-plan-button" onClick={handleAddPlanClick}>Add Plan</button>;
 };
 
 export default AddPlanButton;

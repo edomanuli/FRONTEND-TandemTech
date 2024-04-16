@@ -47,7 +47,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <button
-                    className="btn btn-outline-info mx-2"
+                    className="btn btn-outline-secondary mx-2"
                     onClick={handleLogout}
                   >
                     Log Out
