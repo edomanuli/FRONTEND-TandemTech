@@ -22,7 +22,7 @@ function App() {
           <Route path="/allplans" element={<OurPlans />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/account" element={<Account />} />
+          <Route path="/account/*" element={<Account />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </AuthProvider>
