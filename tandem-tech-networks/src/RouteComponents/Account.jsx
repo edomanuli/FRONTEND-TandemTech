@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { UserPlan } from '../Services/UserPlan';
-import UserPlanDisplay from '../Pages/UserPlanDisplay';
-import UserDeviceDisplay from '../Pages/UserDevicesDisplay';
-
+import React from "react";
+import { Route, Routes, Outlet } from "react-router-dom";
+import UserPlanDisplay from "../Pages/UserPlanDisplay";
+import UserDeviceDisplay from "../Pages/UserDevicesDisplay";
+import Footer from "../Pages/Footer";
 
 const Account = () => {
-
-    return (
-        <>
-            <UserPlanDisplay />
-            <UserDeviceDisplay />
-        </>
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Outlet />}>
+          <Route path="my-plans" element={<UserPlanDisplay />} />
+          <Route path="my-devices" element={<UserDeviceDisplay />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </>
+  );
 };
-
 
 export default Account;

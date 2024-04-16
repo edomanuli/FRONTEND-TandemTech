@@ -33,9 +33,9 @@ const UserDeviceDisplay = () => {
     loadDevices();
   }, [authToken]);
 
-  // if (authToken === null) return <p>Please log in to view this page.</p>;
+  if (authToken === null) return <p>Please log in to view this page.</p>;
   if (isLoading) return <h1>Loading devices...</h1>;
-  // if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <>
@@ -55,7 +55,7 @@ const UserDeviceDisplay = () => {
           </div>
         ))}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

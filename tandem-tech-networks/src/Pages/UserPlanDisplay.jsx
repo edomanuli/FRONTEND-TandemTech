@@ -75,7 +75,7 @@ const UserPlanDisplay = () => {
             </div>
           </div>
         ))}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
