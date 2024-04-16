@@ -3,17 +3,20 @@ import axios from "axios";
 import { useAuth } from "./AuthService";
 
 
-const DeletePlanButton = ({ planInfoId }) => {
+const DeletePlanButton = ({ userPlanId }) => {
     const { authToken } = useAuth();
 
     const handlePlanDeletion = async () => {
         if (window.confirm("Are you sure you want to delete this plan from your account?")) {
             try {
-                const response = await axios.delete(`https://localhost:5001/api/user/plans/${planInfoId}`, {
+                const response = await axios.delete(
+                  `https://localhost:5001/api/user/plans/${userPlanId}`,
+                  {
                     headers: {
-                        Authorization: `Bearer ${authToken}`
-                    }
-                });
+                      Authorization: `Bearer ${authToken}`,
+                    },
+                  }
+                );
                 alert("Plan deleted successfully.");
                 console.log("Deleted plan: ", response.data);
             } catch (error) {

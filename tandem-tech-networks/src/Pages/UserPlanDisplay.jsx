@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../Services/AuthService";
 import { UserPlan } from "../Services/UserPlan";
 import AddPlanButton from "../Services/AddPlanButton";
 import Header from "./Header";
-import DeletePlanButton from "../Services/DeletePlanButton"; // not fully implemented yet
+import Footer from "./Footer";
+import DeletePlanButton from "../Services/DeletePlanButton";
 
 const UserPlanDisplay = () => {
   const { authToken, isLoggedIn } = useAuth();
@@ -11,9 +12,9 @@ const UserPlanDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserPlan = async () => {
-      if (!isLoggedIn()) {
+
+    const fetchUserPlan = useCallback(async () => {
+      if (!authToken) {
         setError("User not logged in.");
         setIsLoading(false);
         return;
@@ -27,12 +28,17 @@ const UserPlanDisplay = () => {
         console.error(error);
       }
       setIsLoading(false);
-    };
+    }, [authToken]);
 
-    if (isLoggedIn()) {
+  useEffect(() => {
+    if (authToken) {
       fetchUserPlan();
     }
-  }, [authToken, isLoggedIn]);
+  }, [authToken, fetchUserPlan]);
+
+  const handlePlanAdd = () => {
+    fetchUserPlan();
+  };
 
   if (!isLoggedIn()) return <p>Please log in to view this page.</p>;
   if (isLoading) return <h1>Loading...</h1>;
@@ -50,11 +56,12 @@ const UserPlanDisplay = () => {
           <p>Enrollment Date: {plan.enrollmentDate}</p>
           <p>Device Limit: {plan.planInfo.deviceLimit}</p>
           <p>Data Limit: {plan.planInfo.dataLimit}GB</p>
-          <p>Description: {plan.planInfo.description}</p>
-          <AddPlanButton planInfoId={plan.planInfo.id} />
-          <DeletePlanButton planInfoId={plan.planInfo.id} /> 
+          <p className="text-wrap">Description: {plan.planInfo.description}</p>
+          <AddPlanButton planInfoId={plan.planInfo.id} onPlanAdd={handlePlanAdd} />
+          <DeletePlanButton userPlanId={plan.id} />
         </div>
       ))}
+      <Footer />
     </div>
   );
 };
