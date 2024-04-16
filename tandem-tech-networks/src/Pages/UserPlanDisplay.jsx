@@ -12,23 +12,22 @@ const UserPlanDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-    const fetchUserPlan = useCallback(async () => {
-      if (!authToken) {
-        setError("User not logged in.");
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        const plans = await UserPlan(authToken);
-        setUserPlan(Array.isArray(plans) ? plans : [plans]);
-      } catch (error) {
-        setError("Failed to fetch user plans");
-        console.error(error);
-      }
+  const fetchUserPlan = useCallback(async () => {
+    if (!authToken) {
+      setError("User not logged in.");
       setIsLoading(false);
-    }, [authToken]);
+      return;
+    }
+
+    try {
+      const plans = await UserPlan(authToken);
+      setUserPlan(Array.isArray(plans) ? plans : [plans]);
+    } catch (error) {
+      setError("Failed to fetch user plans");
+      console.error(error);
+    }
+    setIsLoading(false);
+  }, [authToken]);
 
   useEffect(() => {
     if (authToken) {
@@ -45,24 +44,40 @@ const UserPlanDisplay = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <>
       <Header />
-      <h2>My Plans</h2>
-      {userPlan.map((plan) => (
-        <div key={plan.id}>
-          <h3>
-            <strong>{plan.planInfo.name}</strong> - ${plan.planInfo.price}
-          </h3>
-          <p>Enrollment Date: {plan.enrollmentDate}</p>
-          <p>Device Limit: {plan.planInfo.deviceLimit}</p>
-          <p>Data Limit: {plan.planInfo.dataLimit}GB</p>
-          <p className="text-wrap">Description: {plan.planInfo.description}</p>
-          <AddPlanButton planInfoId={plan.planInfo.id} onPlanAdd={handlePlanAdd} />
-          <DeletePlanButton userPlanId={plan.id} />
-        </div>
-      ))}
-      <Footer />
-    </div>
+      <h2 className="d-flex justify-content-center">My Plans</h2>
+      <div className="user-plan-container">
+        {userPlan.map((plan) => (
+          <div className="user-plan-list" key={plan.id}>
+            <h3 className="user-plan-name-price">
+              <strong>{plan.planInfo.name}</strong>${plan.planInfo.price}
+            </h3>
+            <p className="user-plan-enrollment">
+              <strong>Enrollment Date:</strong> {plan.enrollmentDate}
+            </p>
+            <p className="user-plan-device-limit">
+              <strong>Device Limit: </strong>
+              {plan.planInfo.deviceLimit}
+            </p>
+            <p className="user-plan-data-limit">
+              <strong>Data Limit:</strong> {plan.planInfo.dataLimit}GB
+            </p>
+            <p className="text-wrap user-plan-description">
+              <strong>Description:</strong> {plan.planInfo.description}
+            </p>
+            <div className="btn-container">
+              <AddPlanButton
+                planInfoId={plan.planInfo.id}
+                onPlanAdd={handlePlanAdd}
+              />
+              <DeletePlanButton userPlanId={plan.id} />
+            </div>
+          </div>
+        ))}
+        <Footer />
+      </div>
+    </>
   );
 };
 

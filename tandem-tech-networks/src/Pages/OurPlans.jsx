@@ -18,31 +18,26 @@ const OurPlans = () => {
     getPlans();
   }, []);
 
-  const handleButtonClick = (id) => {
-    console.log(`Button Clicked with ID: ${id}`);
-  };
-
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
       <Header />
-      <h1>Plans & Pricing</h1>
-      <div>
-        <ul>
-          {plans.map((plan) => (
-            <li key={plan.id}>
-              <h3>Plan Name: {plan.name}</h3>
-              <h4>Price: ${plan.price}</h4>
-              <h5 >Device Limit: {plan.deviceLimit}</h5>
-              <h5>Data Limit: {plan.dataLimit}</h5>
-              <p>
-                <strong>Plan Description:</strong>{" "}
-                {plan.description}
-              </p>
-              <AddPlanButton planInfoId={plan.id} />
-            </li>
-          ))}
-        </ul>
+      <h1 className="d-flex justify-content-center">Plans & Pricing</h1>
+      <div className="all-plan-container">
+        {plans.map((plan) => (
+          <div className="plan-list" key={plan.id}>
+            <h3 className="plan-name">Plan Name: {plan.name}</h3>
+            <h4 className="plan-price">Price: ${plan.price}</h4>
+            <h5 className="plan-device-limit">
+              Device Limit: {plan.deviceLimit}
+            </h5>
+            <h5 className="plan-data-limit">Data Limit: {plan.dataLimit}</h5>
+            <p className="plan-description">
+              <strong>Plan Description:</strong> {plan.description}
+            </p>
+            <AddPlanButton planInfoId={plan.id} />
+          </div>
+        ))}
       </div>
       <Footer />
     </>
