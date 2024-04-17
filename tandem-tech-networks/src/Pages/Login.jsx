@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Services/AuthService";
+import { useAuth } from "../Services/useAuth";
 import Header from "./Header";
 import Footer from "./Footer";
 
