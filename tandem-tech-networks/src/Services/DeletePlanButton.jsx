@@ -1,6 +1,5 @@
-import React from "react";
 import axios from "axios";
-import { useAuth } from "./AuthService";
+import { useAuth } from "./useAuth";
 
 const DeletePlanButton = ({ userPlanId }) => {
   const { authToken } = useAuth();
@@ -32,7 +31,11 @@ const DeletePlanButton = ({ userPlanId }) => {
     }
   };
 
-  return <button className="delete-plan-button" onClick={handlePlanDeletion}>Delete Plan</button>;
+  return (
+    <button className="delete-plan-button" onClick={handlePlanDeletion}>
+      Delete Plan
+    </button>
+  );
 };
 
 export default DeletePlanButton;

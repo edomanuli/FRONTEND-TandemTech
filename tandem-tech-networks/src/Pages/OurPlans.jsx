@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { GetPlans } from "../Services/GetPlans";
 import AddPlanButton from "../Services/AddPlanButton";
 import Header from "./Header";

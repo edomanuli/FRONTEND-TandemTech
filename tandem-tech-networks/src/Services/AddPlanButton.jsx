@@ -1,6 +1,5 @@
-import React from "react";
 import axios from "axios";
-import { useAuth } from "./AuthService";
+import { useAuth } from "./useAuth";
 
 const AddPlanButton = ({ planInfoId, onPlanAdd }) => {
   const { authToken } = useAuth();

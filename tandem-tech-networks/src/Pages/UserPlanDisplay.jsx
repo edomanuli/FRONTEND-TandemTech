@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useAuth } from "../Services/AuthService";
+import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "../Services/useAuth";
 import { UserPlan } from "../Services/UserPlan";
-import AddPlanButton from "../Services/AddPlanButton";
 import Header from "./Header";
-import Footer from "./Footer";
 import DeletePlanButton from "../Services/DeletePlanButton";
 
+
 const UserPlanDisplay = () => {
-  const { authToken, isLoggedIn } = useAuth();
+  const { authToken } = useAuth();
   const [userPlan, setUserPlan] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,11 +34,13 @@ const UserPlanDisplay = () => {
     }
   }, [authToken, fetchUserPlan]);
 
-  const handlePlanAdd = () => {
-    fetchUserPlan();
-  };
 
-  if (!isLoggedIn()) return <p>Please log in to view this page.</p>;
+  if (!authToken) return (
+    <>
+      <Header />
+      <p>Please log in to view this page.</p>
+    </>
+  );
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>{error}</p>;
 
@@ -67,15 +68,14 @@ const UserPlanDisplay = () => {
               <strong>Description:</strong> {plan.planInfo.description}
             </p>
             <div className="btn-container">
-              <AddPlanButton
+              {/* <AddPlanButton
                 planInfoId={plan.planInfo.id}
                 onPlanAdd={handlePlanAdd}
-              />
+              /> */}
               <DeletePlanButton userPlanId={plan.id} />
             </div>
           </div>
         ))}
-        {/* <Footer /> */}
       </div>
     </>
   );

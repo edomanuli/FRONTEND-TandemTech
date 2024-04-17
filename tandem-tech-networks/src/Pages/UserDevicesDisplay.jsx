@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../Services/AuthService";
+import { useState, useEffect } from "react";
+import { useAuth } from "../Services/useAuth";
 import { fetchUserDevices } from "../Services/UserDevices";
 import DeleteDeviceButton from "../Services/DeleteDeviceButton";
 import Header from "./Header";
-import Footer from "./Footer";
 
 const UserDeviceDisplay = () => {
   const { authToken } = useAuth();
@@ -34,7 +33,7 @@ const UserDeviceDisplay = () => {
   }, [authToken]);
 
   if (authToken === null) return <p>Please log in to view this page.</p>;
-  if (isLoading) return <h1>Loading devices...</h1>;
+  if (isLoading) return <h3>Loading devices...</h3>;
   if (error) return <p>Error: {error}</p>;
 
   return (
@@ -51,11 +50,11 @@ const UserDeviceDisplay = () => {
             <p>Device Manufacturer: {device.deviceInfo.manufacturer}</p>
             <p>Serial: {device.serial}</p>
             <p>Phone Number: +1{device.assignedNumber.phoneNumber.number}</p>
+            <p>Plan: {device.assignedNumber.userPlanId}</p>
             <DeleteDeviceButton deviceId={device.id} />
           </div>
         ))}
       </div>
-      {/* <Footer /> */}
     </>
   );
 };

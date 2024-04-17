@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../Services/AuthService";
+import { useAuth } from "../Services/useAuth";
 import { Offcanvas } from "react-bootstrap";
 
 const Header = () => {
@@ -91,6 +91,11 @@ const Header = () => {
             <li>
               <NavLink to="/account/my-devices" onClick={toggleOffcanvas}>
                 My Devices
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/account/my-bill" onClick={toggleOffcanvas}>
+                My Bill
               </NavLink>
             </li>
           </ul>
