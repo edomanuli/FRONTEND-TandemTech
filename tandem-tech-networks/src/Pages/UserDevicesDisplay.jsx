@@ -42,11 +42,6 @@ const UserDeviceDisplay = () => {
     loadDevices();
   }, [authToken, navigate]);
 
-  // const handleReloadDevices = async () => {
-  //   const reload = await fetchUserDevices(authToken);
-  //   setUserDevices(reload);
-  // };
-
   const handleReassignNumber = async (currentDeviceId, newNumber) => {
     
     try {
