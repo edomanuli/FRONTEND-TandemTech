@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../modules/HomePage.css";
@@ -6,6 +7,9 @@ import carousel2 from "../assets/carousel2.png";
 import carousel3 from "../assets/carousel3.png";
 
 function Home() {
+  const navigate = useNavigate();
+
+
   return (
     <>
       <Header />
@@ -59,7 +63,7 @@ function Home() {
               communities.
             </p>
             <a
-              href="#"
+              onClick={() => navigate("/register")}
               className="btn btn-primary d-flex justify-content-center"
             >
               GET STARTED

@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import reassignNumberButton from "../Services/ReassignNumberButton";
 import DeleteDeviceButton from "../Services/DeleteDeviceButton";
 import Header from "./Header";
+import "../modules/userDevices.css";
+
 
 const UserDeviceDisplay = () => {
   const { authToken } = useAuth();
   const [userDevices, setUserDevices] = useState([]);
-  const [selectedDevice, setSelectedDevice] = useState({});
   const [selectedNumber, setSelectedNumber] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -78,18 +79,25 @@ const UserDeviceDisplay = () => {
     <>
       <Header />
       <h2 className="d-flex justify-content-center">My Devices</h2>
-      <div>
+      <div className="device-container">
         {userDevices.map((device) => (
-          <div key={device.id}>
-            <h3>
+          <div key={device.id} className="device-detail">
+            <h3 className="device-name">
               <strong>{device.name}</strong>
             </h3>
-            <p>Device Type: {device.deviceInfo?.model}</p>
-            <p>Device Manufacturer: {device.deviceInfo?.manufacturer}</p>
-            <p>Serial/IMEI: {device?.serial}</p>
-            <p>Phone Number: +1{device.assignedNumber?.phoneNumber?.number}</p>
-            <p>
-              Plan Information: {device.assignedNumber?.userPlan?.planInfo?.name} - {" "}
+            <p className="device-info">
+              Device Type: {device.deviceInfo?.model}
+            </p>
+            <p className="device-info">
+              Device Manufacturer: {device.deviceInfo?.manufacturer}
+            </p>
+            <p className="device-info">Serial/IMEI: {device?.serial}</p>
+            <p className="device-info">
+              Phone Number: +1{device.assignedNumber?.phoneNumber?.number}
+            </p>
+            <p className="device-info">
+              Plan Information:{" "}
+              {device.assignedNumber?.userPlan?.planInfo?.name} -{" "}
               {device.assignedNumber?.userPlanId}
             </p>
 
@@ -116,6 +124,7 @@ const UserDeviceDisplay = () => {
               onClick={() =>
                 handleReassignNumber(device.id, selectedNumber[device.id])
               }
+              className="device-button"
             >
               Reassign Number
             </button>

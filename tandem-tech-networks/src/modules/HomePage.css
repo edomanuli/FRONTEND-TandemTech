@@ -1,7 +1,7 @@
-/* .carousel-homepage img {
-    height: 400px;
+.btn-primary {
+    background-color: #1a030186!important;
 }
 
-.inner-image {
-    height: 100%
-} */
+.btn-primary:hover {
+    background-color: #643021ad!important;
+}

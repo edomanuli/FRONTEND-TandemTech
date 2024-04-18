@@ -6,6 +6,7 @@ import { UserPlan } from "../Services/UserPlan";
 import { supportedDevices } from "../Services/SupportedDevices";
 import Header from "./Header";
 import Footer from "./Footer";
+import "../modules/addDevice.css"
 
 const AddDeviceForm = () => {
   const { authToken } = useAuth();
@@ -90,72 +91,76 @@ const AddDeviceForm = () => {
   return (
     <>
       <Header />
-      <form onSubmit={handleSubmit}>
-        <div className="d-flex justify-content-center">
-          <h2>Device Information</h2>
-        </div>
-        {error && <div style={{ color: "red", margin: "10px 0"}}>{error}</div>}
-        <div>
-          <label className="form-label">
-            Please select a plan to add your device to:
-          </label>
-          <select
-            name="userPlanId"
-            value={deviceInfo.userPlanId}
-            onChange={handleDeviceInputChange}
-          >
-            <option value="">Select a Plan</option>
-            {userPlans.map((plan) => (
-              <option key={plan.id} value={plan.id}>
-                {plan.planInfo.name}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="add-container">
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex justify-content-center">
+            <h2>Device Information</h2>
+          </div>
+          {error && (
+            <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+          )}
+          <div>
+            <label className="add-label add-label">
+              Please select a plan to add your device to:
+            </label>
+            <select
+              name="userPlanId"
+              value={deviceInfo.userPlanId}
+              onChange={handleDeviceInputChange}
+            >
+              <option value="">Select a Plan</option>
+              {userPlans.map((plan) => (
+                <option key={plan.id} value={plan.id}>
+                  {plan.planInfo.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label className="form-label">Supported devices:</label>
-          <select
-            name="deviceInfoId"
-            value={deviceInfo.deviceInfoId}
-            onChange={handleDeviceInputChange}
-          >
-            <option value="">Select a Device</option>
-            {devices.map((device) => (
-              <option key={device.id} value={device.id}>
-                {device.model}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div>
+            <label className="add-label add-label">Supported devices:</label>
+            <select
+              name="deviceInfoId"
+              value={deviceInfo.deviceInfoId}
+              onChange={handleDeviceInputChange}
+            >
+              <option value="">Select a Device</option>
+              {devices.map((device) => (
+                <option key={device.id} value={device.id}>
+                  {device.model}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label className="form-label">Name:</label>
-          <input
-            placeholder="What would you like to name your device?"
-            type="text"
-            name="name"
-            value={deviceInfo.name}
-            onChange={handleDeviceInputChange}
-          />
-        </div>
+          <div>
+            <label className="add-label">Name:</label>
+            <input
+              placeholder="What would you like to name your device?"
+              type="text"
+              name="name"
+              value={deviceInfo.name}
+              onChange={handleDeviceInputChange}
+            />
+          </div>
 
-        <div>
-          <label className="form-label">IMEI/Serial Number:</label>
-          <input
-            placeholder="Enter the IMEI or Serial Number of your device"
-            type="text"
-            name="serial"
-            value={deviceInfo.serial.toUpperCase()}
-            onChange={handleDeviceInputChange}
-          />
-        </div>
+          <div>
+            <label className="add-label">IMEI/Serial Number:</label>
+            <input
+              placeholder="IMEI/Serial Number of your device"
+              type="text"
+              name="serial"
+              value={deviceInfo.serial.toUpperCase()}
+              onChange={handleDeviceInputChange}
+            />
+          </div>
 
-        <div>
-          <button type="submit">Add Device</button>
-        </div>
-      </form>
-      <Footer />
+          <div>
+            <button className="add-button" type="submit">Add Device</button>
+          </div>
+        </form>
+      </div>
+      {/* <Footer /> */}
     </>
   );
 };

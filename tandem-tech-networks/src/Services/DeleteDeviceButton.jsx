@@ -31,7 +31,11 @@ const DeleteDeviceButton = ({ deviceId }) => {
     }
   };
 
-  return <button onClick={handleDeviceDeletion}>Delete Device</button>;
+  return (
+    <button className="delete-button" onClick={handleDeviceDeletion}>
+      Delete Device
+    </button>
+  );
 };
 
 export default DeleteDeviceButton;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Services/useAuth";
 import { Offcanvas } from "react-bootstrap";
+import "../modules/headerOffCanvas.css";
 
 const Header = () => {
   const { removeLoginToken, isLoggedIn } = useAuth();
@@ -44,7 +45,7 @@ const Header = () => {
                 <>
                   <li className="nav-item px-2">
                     <button
-                      className="nav-link btn btn-link"
+                      className="nav-link"
                       onClick={toggleOffcanvas}
                       style={{ textDecoration: "none" }}
                     >
@@ -84,7 +85,7 @@ const Header = () => {
         <Offcanvas.Body>
           <ul>
             <div>
-              <li className="nav-link">
+              <li className="off-link">
                 <NavLink to="/home" onClick={toggleOffcanvas}>
                   HOME
                 </NavLink>
@@ -92,24 +93,24 @@ const Header = () => {
             </div>
 
             <div>
-              <li className="nav-link">
+              <li className="off-link">
                 <NavLink to="/account/my-plans" onClick={toggleOffcanvas}>
                   MY PLANS
                 </NavLink>
               </li>
             </div>
 
-            <li className="nav-link">
+            <li className="off-link">
               <NavLink to="/account/my-devices" onClick={toggleOffcanvas}>
                 MY DEVICES
               </NavLink>
             </li>
-            <li className="nav-link">
+            <li className="off-link">
               <NavLink to="/account/my-bill" onClick={toggleOffcanvas}>
                 MY BILL
               </NavLink>
             </li>
-            <li className="nav-link">
+            <li className="off-link">
               <NavLink to="/account/add-device" onClick={toggleOffcanvas}>
                 ADD DEVICE
               </NavLink>

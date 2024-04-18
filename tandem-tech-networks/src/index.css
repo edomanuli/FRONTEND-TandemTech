@@ -162,3 +162,14 @@ footer {
 .footer-container i {
   font-size: 25px;
 }
+
+
+/* Select form */
+select {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

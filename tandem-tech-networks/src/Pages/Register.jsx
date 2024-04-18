@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import "../modules/register.css";
 
 const Register = () => {
   const [userInfo, setUserInfo] = useState({
@@ -34,17 +35,14 @@ const Register = () => {
     <>
       <Header />
       <h1 className="d-flex justify-content-center">Register</h1>
-      <div className="">
-        <form
-          className="row g-3 d-flex justify-content-center"
-          onSubmit={handleSubmition}
-        >
-          <div className="col-12">
-            <label className="form-label">
+      <div className="form-container">
+        <form className="" onSubmit={handleSubmition}>
+          <div className="form-group">
+            <label className="register-label">
               {" "}
               First Name
               <input
-                className="form-control"
+                className="form-control register-input"
                 type="text"
                 name="firstName"
                 value={userInfo.firstName}
@@ -53,12 +51,12 @@ const Register = () => {
             </label>
           </div>
 
-          <div className="col-12">
-            <label className="form-label">
+          <div className="">
+            <label className="register-label">
               {" "}
               Last Name
               <input
-                className="form-control"
+                className="form-control register-input"
                 type="text"
                 name="lastName"
                 value={userInfo.lastName}
@@ -67,12 +65,12 @@ const Register = () => {
             </label>
           </div>
 
-          <div className="col-12">
-            <label className="form-label">
+          <div className="">
+            <label className="register-label">
               {" "}
               Username
               <input
-                className="form-control"
+                className="form-control register-input"
                 type="text"
                 name="username"
                 value={userInfo.username}
@@ -81,11 +79,11 @@ const Register = () => {
             </label>
           </div>
 
-          <div className="col-12">
-            <label className="form-label">
+          <div className="">
+            <label className="register-label">
               Email
               <input
-                className="form-control"
+                className="form-control register-input"
                 type="email"
                 name="email"
                 value={userInfo.email}
@@ -94,11 +92,11 @@ const Register = () => {
             </label>
           </div>
 
-          <div className="col-12">
-            <label className="form-label">
+          <div className="">
+            <label className="register-label">
               Password
               <input
-                className="form-control"
+                className="form-control register-input"
                 type="text"
                 name="password"
                 value={userInfo.password}
@@ -108,7 +106,7 @@ const Register = () => {
           </div>
 
           <div>
-            <button className="btn btn-primary" type="submit">
+            <button className="register-button" type="submit">
               Register
             </button>
           </div>

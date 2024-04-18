@@ -1,0 +1,76 @@
+.device-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.device-detail {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+
+.device-name {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.device-info {
+  color: #666;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.button,
+select {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.device-button {
+  background-color: #1e3d5ede;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+
+.device-button:hover {
+  background-color: #37414d;
+}
+
+.delete-button {
+  background-color: #B26064;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #8a3d42;
+}
+
+.error-message,
+.loading-message {
+  color: red;
+  text-align: center;
+  font-size: 18px;
+}
+
+.loading-message {
+  color: #017bff;
+}
+
