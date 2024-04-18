@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../Services/useAuth";
 import { fetchUserBill } from "../Services/UserBill";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 
@@ -10,6 +11,8 @@ const UserBillDisplay = () => {
     const [userBill, setUserBill] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const navigation = useNavigate();
 
     useEffect(() => {
         if (!authToken) {
@@ -36,7 +39,7 @@ const UserBillDisplay = () => {
     if (!authToken) return (
       <>
         <Header />
-        <p>Please log in to view this page.</p>
+        {navigation("/login")}
       </>
     );
     if (isLoading) return <h3>Loading bill...</h3>;

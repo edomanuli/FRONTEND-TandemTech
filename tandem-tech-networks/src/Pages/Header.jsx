@@ -98,6 +98,11 @@ const Header = () => {
                 My Bill
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/account/add-device" onClick={toggleOffcanvas}>
+                Add Device
+              </NavLink>
+            </li>
           </ul>
         </Offcanvas.Body>
       </Offcanvas>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../Services/useAuth";
 import { UserPlan } from "../Services/UserPlan";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import DeletePlanButton from "../Services/DeletePlanButton";
 
@@ -10,6 +11,8 @@ const UserPlanDisplay = () => {
   const [userPlan, setUserPlan] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigation = useNavigate();
 
   const fetchUserPlan = useCallback(async () => {
     if (!authToken) {
@@ -38,7 +41,7 @@ const UserPlanDisplay = () => {
   if (!authToken) return (
     <>
       <Header />
-      <p>Please log in to view this page.</p>
+      {navigation("/login")}
     </>
   );
   if (isLoading) return <h1>Loading...</h1>;

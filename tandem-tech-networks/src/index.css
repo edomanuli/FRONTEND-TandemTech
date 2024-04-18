@@ -1,5 +1,21 @@
-/* All Plans */
+html, body {
+  height: 100%;
+}
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  height: 50px;
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+/* All Plans */
 .all-plan-container {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +79,7 @@
   font-size: 16px;
   cursor: pointer;
   margin: 10px 20px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 
 .add-plan-button:hover {
