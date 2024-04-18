@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Services/useAuth";
 import { Offcanvas } from "react-bootstrap";
+import "../modules/headerOffCanvas.css";
 
 const Header = () => {
   const { removeLoginToken, isLoggedIn } = useAuth();
@@ -15,7 +16,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary px-3 pt-3 pb-3 fixed-top">
         <div className="container">
           <a className="navbar-brand" href="/home">
-            Tandem-Tech Networks
+            TANDEM-TECH
           </a>
           <button
             className="navbar-toggler"
@@ -32,42 +33,42 @@ const Header = () => {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item px-3">
                 <NavLink className="nav-link" to="/home">
-                  Home
+                  HOME
                 </NavLink>
               </li>
               <li className="nav-item px-2">
                 <NavLink className="nav-link" to="/allplans">
-                  Our Plans
+                  PLANS
                 </NavLink>
               </li>
               {isLoggedIn() ? (
                 <>
                   <li className="nav-item px-2">
                     <button
-                      className="nav-link btn btn-link"
+                      className="nav-link"
                       onClick={toggleOffcanvas}
                       style={{ textDecoration: "none" }}
                     >
-                      Account
+                      ACCOUNT
                     </button>
                   </li>
                   <button
                     className="btn btn-outline-secondary mx-2"
                     onClick={handleLogout}
                   >
-                    Log Out
+                    LOG OUT
                   </button>
                 </>
               ) : (
                 <>
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/login">
-                      Login
+                      LOGIN
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/register">
-                      Register
+                      REGISTER
                     </NavLink>
                   </li>
                 </>
@@ -79,23 +80,39 @@ const Header = () => {
 
       <Offcanvas show={showOffcanvas} onHide={toggleOffcanvas} placement="end">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Account Menu</Offcanvas.Title>
+          <Offcanvas.Title>ACCOUNT MENU</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul>
-            <li>
-              <NavLink to="/account/my-plans" onClick={toggleOffcanvas}>
-                My Plans
-              </NavLink>
-            </li>
-            <li>
+            <div>
+              <li className="off-link">
+                <NavLink to="/home" onClick={toggleOffcanvas}>
+                  HOME
+                </NavLink>
+              </li>
+            </div>
+
+            <div>
+              <li className="off-link">
+                <NavLink to="/account/my-plans" onClick={toggleOffcanvas}>
+                  MY PLANS
+                </NavLink>
+              </li>
+            </div>
+
+            <li className="off-link">
               <NavLink to="/account/my-devices" onClick={toggleOffcanvas}>
-                My Devices
+                MY DEVICES
               </NavLink>
             </li>
-            <li>
+            <li className="off-link">
               <NavLink to="/account/my-bill" onClick={toggleOffcanvas}>
-                My Bill
+                MY BILL
+              </NavLink>
+            </li>
+            <li className="off-link">
+              <NavLink to="/account/add-device" onClick={toggleOffcanvas}>
+                ADD DEVICE
               </NavLink>
             </li>
           </ul>

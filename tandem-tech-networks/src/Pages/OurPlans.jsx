@@ -13,6 +13,9 @@ const OurPlans = () => {
       const plansFromAPI = await GetPlans();
       setPlans(plansFromAPI);
       setIsLoading(false);
+      // if (plans.dataLimit === 0) {
+      //   plans.dataLimit = "Unlimited";
+      // }
     };
 
     getPlans();

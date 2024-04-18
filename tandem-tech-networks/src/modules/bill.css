@@ -1,0 +1,52 @@
+.bill-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-heading {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.bill-total {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2a7de1;
+  margin-bottom: 10px;
+}
+
+.bill-details, .bill-plans {
+  margin-left: 20px;
+  color: #666;
+  font-size: 16px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #017bff;
+  margin-top: 20px;
+}
+
+.bill-plans ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bill-plans li {
+  background: #e9ecef;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}

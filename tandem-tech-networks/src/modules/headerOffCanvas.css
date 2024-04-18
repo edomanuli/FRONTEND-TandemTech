@@ -1,0 +1,50 @@
+.off-link {
+  color: #007bff;
+  transition: color 0.3s ease-in-out;
+}
+
+.off-link:hover, .off-link:focus {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.off-link a {
+  display: block;
+  padding: 12px 20px;
+  color: #495057;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.off-link a:hover, .off-link a:focus {
+  color: #0d6efd;
+  background-color: #e9ecef;
+  text-decoration: none;
+}
+
+.btn-link {
+  color: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  border-color: #5a6268;
+  color: #5a6268;
+}
+
+.offcanvas-body ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
