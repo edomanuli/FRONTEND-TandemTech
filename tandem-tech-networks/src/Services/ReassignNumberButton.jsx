@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const reassignNumberButton = async (currentDeviceId, assignedNumberId, newDeviceId, authToken) => {
+const reassignNumberButton = async (currentDeviceId, assignedNumberId, authToken) => {
 
   try {
     const response = await axios.put(
       `https://localhost:5001/api/user/devices/${currentDeviceId}`,
       {
-        assignedNumberId: assignedNumberId,
-        newDeviceId: newDeviceId,
+        assignedNumberId: assignedNumberId
+        // newDeviceId: newDeviceId,
       }, {
         headers: {
           'Authorization': `Bearer ${authToken}`

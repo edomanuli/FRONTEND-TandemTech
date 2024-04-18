@@ -10,15 +10,17 @@ const UserDeviceDisplay = () => {
   const { authToken } = useAuth();
   const [userDevices, setUserDevices] = useState([]);
   const [selectedDevice, setSelectedDevice] = useState({});
+  const [selectedNumber, setSelectedNumber] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!authToken) {
       setError("Please log in to view your devices.");
       setIsLoading(false);
+      navigate("/login");
       return;
     }
 
@@ -35,17 +37,17 @@ const UserDeviceDisplay = () => {
     };
 
     loadDevices();
-  }, [authToken]);
+  }, [authToken, navigate]);
 
-  const handleReassignNumber = async (currentDeviceId, assignedNumberId) => {
-    const newDeviceId = selectedDevice[currentDeviceId];
-    if (!newDeviceId) {
-      alert("Please select a device to reassign the number to.");
-      return;
-    }
+  const handleReloadDevices = async () => {
+    const reload = await fetchUserDevices(authToken);
+    setUserDevices(reload);
+  };
 
+  const handleReassignNumber = async (currentDeviceId, newNumber) => {
+    
     try {
-      await reassignNumberButton(currentDeviceId, assignedNumberId, newDeviceId, authToken);
+      await reassignNumberButton(currentDeviceId, newNumber, authToken);
       alert("Number reassigned successfully.");
       // I'm refreshing the device list
       const refreshDevices = await fetchUserDevices(authToken);
@@ -56,12 +58,7 @@ const UserDeviceDisplay = () => {
     }
   };
 
-  if (!authToken) return (
-    <>
-      <Header />
-      {navigation("/login")}
-    </>
-  );
+  
   if (isLoading) return <h3>Loading devices...</h3>;
   if (error) return <p>Error: {error}</p>;
 
@@ -77,31 +74,31 @@ const UserDeviceDisplay = () => {
             </h3>
             <p>Device Type: {device.deviceInfo?.model}</p>
             <p>Device Manufacturer: {device.deviceInfo?.manufacturer}</p>
-            <p>Serial: {device?.serial}</p>
+            <p>Serial/IMEI: {device?.serial}</p>
             <p>Phone Number: +1{device.assignedNumber?.phoneNumber?.number}</p>
-            <p>Plan: {device.assignedNumber?.userPlanId}</p>
+            <p>Plan: {device.assignedNumber?.userPlanId} - {device.assignedNumber?.userPlanId}</p>
 
             <select
-              value={selectedDevice[device.id] || ""}
+              value={selectedNumber[device.id] || ""}
               onChange={(e) =>
-                setSelectedDevice({
-                  ...selectedDevice,
+                setSelectedNumber({
+                  ...selectedNumber,
                   [device.id]: e.target.value,
                 })
               }
             >
-              <option value={""}>Select device</option>
+              <option value={""}>Reassign to new number:</option>
               {userDevices
-                .filter((dev) => dev.id !== device.id)
-                .map((dev) => (
-                  <option key={dev.id} value={dev.id}>
-                    {dev.name}
+                .filter((dev) => dev.id !== device.id).flatMap(dev => dev.assignedNumber)
+                .map(num => (
+                  <option key={num.id} value={num.id}>
+                    {num.phoneNumber.number}
                   </option>
                 ))}
             </select>
             <button
               onClick={() =>
-                handleReassignNumber(device.id, device.assignedNumber.id)
+                handleReassignNumber(device.id, selectedNumber[device.id])
               }
             >
               Reassign Number

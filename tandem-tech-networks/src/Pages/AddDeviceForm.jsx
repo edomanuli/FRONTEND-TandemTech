@@ -19,13 +19,31 @@ const AddDeviceForm = () => {
     serial: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (authToken) {
-      UserPlan(authToken).then(setUserPlans).catch(console.error);
-      supportedDevices(authToken).then(setDevices).catch(console.error);
+    if (!authToken) {
+      navigation("/login");
+      return;
     }
-  }, [authToken]);
+
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const plans = await UserPlan(authToken);
+        const devices = await supportedDevices(authToken);
+        setUserPlans(plans);
+        setDevices(devices);
+      } catch (error) {
+        console.error("Error loading data:", error);
+        setError("Failed to load data.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [authToken, navigation]);
 
   const handleDeviceInputChange = (e) => {
     setDeviceInfo({ ...deviceInfo, [e.target.name]: e.target.value });
@@ -33,28 +51,28 @@ const AddDeviceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await axios.post("https://localhost:5001/api/user/devices", deviceInfo, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
-      alert("Device added successfully!");
       navigation("/my-devices");
     } catch (error) {
       console.error(
-        `Device addition failed: ${error.response?.data || error.message}`
+        "Device addition failed:",
+        error.response?.data || error.message
       );
+      if (error.response?.status === 403) {
+        setError(
+          "Failed to add device."
+        );
+      } else {
+        setError("You have exceeded the number of devices allowed.Please upgrade your plan.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  if (!authToken) {
-    return (
-      <>
-        <Header />
-        {navigation("/login")}
-        <Footer />
-      </>
-    );
-  }
 
   if (isLoading) {
     return (
@@ -68,6 +86,7 @@ const AddDeviceForm = () => {
     );
   }
 
+
   return (
     <>
       <Header />
@@ -75,6 +94,7 @@ const AddDeviceForm = () => {
         <div className="d-flex justify-content-center">
           <h2>Device Information</h2>
         </div>
+        {error && <div style={{ color: "red", margin: "10px 0"}}>{error}</div>}
         <div>
           <label className="form-label">
             Please select a plan to add your device to:
@@ -126,7 +146,7 @@ const AddDeviceForm = () => {
             placeholder="Enter the IMEI or Serial Number of your device"
             type="text"
             name="serial"
-            value={deviceInfo.serial}
+            value={deviceInfo.serial.toUpperCase()}
             onChange={handleDeviceInputChange}
           />
         </div>
