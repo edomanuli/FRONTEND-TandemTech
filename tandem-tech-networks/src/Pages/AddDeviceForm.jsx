@@ -5,7 +5,6 @@ import { useAuth } from "../Services/useAuth";
 import { UserPlan } from "../Services/UserPlan";
 import { supportedDevices } from "../Services/SupportedDevices";
 import Header from "./Header";
-import Footer from "./Footer";
 import "../modules/addDevice.css"
 
 const AddDeviceForm = () => {
@@ -57,7 +56,8 @@ const AddDeviceForm = () => {
       await axios.post("https://localhost:5001/api/user/devices", deviceInfo, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
-      navigation("/my-devices");
+      alert("Device added successfully.");
+      navigation("/account/my-devices");
     } catch (error) {
       console.error(
         "Device addition failed:",
@@ -82,7 +82,6 @@ const AddDeviceForm = () => {
         <div className="d-flex justify-content-center">
           <h2>Loading...</h2>
         </div>
-        <Footer />
       </>
     );
   }
@@ -160,7 +159,6 @@ const AddDeviceForm = () => {
           </div>
         </form>
       </div>
-      {/* <Footer /> */}
     </>
   );
 };

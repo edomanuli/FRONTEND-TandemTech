@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddDeviceButton = ({ userPlanId }) => {
   const { authToken } = useAuth();
+  const navigation = useNavigate();
   const [devices, setDevices] = useState([]);
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +58,7 @@ const AddDeviceButton = ({ userPlanId }) => {
         }
       );
       alert("Device added successfully!");
+      navigation("/my-devices");
       console.log("Response: ", response.data);
     } catch (error) {
       alert("An error occurred while adding the device.");

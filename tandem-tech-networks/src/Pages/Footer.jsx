@@ -27,9 +27,6 @@ const Footer = () => {
             <h5>&copy; {date.getFullYear()} Tandem Networks</h5>
           </div>
         </div>
-        {/* <footer className="container text-center">
-          <p>&copy; {date.getFullYear()} Tandem Networks</p>
-        </footer> */}
       </>
     );
 };

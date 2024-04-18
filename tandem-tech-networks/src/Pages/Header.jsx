@@ -15,7 +15,7 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary px-3 pt-3 pb-3 fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="/home">
+          <a className="navbar-brand fw-bold" href="/home">
             TANDEM-TECH
           </a>
           <button
@@ -32,12 +32,12 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item px-3">
-                <NavLink className="nav-link" to="/home">
+                <NavLink className="nav-link fw-semibold" to="/home">
                   HOME
                 </NavLink>
               </li>
               <li className="nav-item px-2">
-                <NavLink className="nav-link" to="/allplans">
+                <NavLink className="nav-link fw-semibold" to="/allplans">
                   PLANS
                 </NavLink>
               </li>
@@ -45,7 +45,7 @@ const Header = () => {
                 <>
                   <li className="nav-item px-2">
                     <button
-                      className="nav-link"
+                      className="nav-link fw-semibold"
                       onClick={toggleOffcanvas}
                       style={{ textDecoration: "none" }}
                     >
@@ -53,7 +53,7 @@ const Header = () => {
                     </button>
                   </li>
                   <button
-                    className="btn btn-outline-secondary mx-2"
+                    className="btn btn-outline-secondary mx-2 fw-semibold"
                     onClick={handleLogout}
                   >
                     LOG OUT
@@ -62,12 +62,12 @@ const Header = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/login">
+                    <NavLink className="nav-link fw-semibold" to="/login">
                       LOGIN
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/register">
+                    <NavLink className="nav-link fw-semibold" to="/register">
                       REGISTER
                     </NavLink>
                   </li>
