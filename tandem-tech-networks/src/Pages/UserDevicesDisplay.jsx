@@ -29,6 +29,8 @@ const UserDeviceDisplay = () => {
         const devices = await fetchUserDevices(authToken);
         setUserDevices(devices);
         setError(null);
+        if (devices.length === 0) setError("No devices found. Please add a device.");
+        
       } catch (error) {
         setError("Failed to get devices.");
         console.error(error);
@@ -39,10 +41,10 @@ const UserDeviceDisplay = () => {
     loadDevices();
   }, [authToken, navigate]);
 
-  const handleReloadDevices = async () => {
-    const reload = await fetchUserDevices(authToken);
-    setUserDevices(reload);
-  };
+  // const handleReloadDevices = async () => {
+  //   const reload = await fetchUserDevices(authToken);
+  //   setUserDevices(reload);
+  // };
 
   const handleReassignNumber = async (currentDeviceId, newNumber) => {
     
@@ -58,9 +60,19 @@ const UserDeviceDisplay = () => {
     }
   };
 
-  
+  if (userDevices.length === 0) return (
+    <>
+      <Header />
+      <h3 className="d-flex justify-content-center">No devices found. Please add a device.</h3>
+    </>
+  );
   if (isLoading) return <h3>Loading devices...</h3>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return (
+    <>
+      <Header />
+      <p>Error: {error}</p>
+    </>
+  );
 
   return (
     <>
@@ -76,7 +88,10 @@ const UserDeviceDisplay = () => {
             <p>Device Manufacturer: {device.deviceInfo?.manufacturer}</p>
             <p>Serial/IMEI: {device?.serial}</p>
             <p>Phone Number: +1{device.assignedNumber?.phoneNumber?.number}</p>
-            <p>Plan: {device.assignedNumber?.userPlanId} - {device.assignedNumber?.userPlanId}</p>
+            <p>
+              Plan Information: {device.assignedNumber?.userPlan?.planInfo?.name} - {" "}
+              {device.assignedNumber?.userPlanId}
+            </p>
 
             <select
               value={selectedNumber[device.id] || ""}
@@ -89,8 +104,9 @@ const UserDeviceDisplay = () => {
             >
               <option value={""}>Reassign to new number:</option>
               {userDevices
-                .filter((dev) => dev.id !== device.id).flatMap(dev => dev.assignedNumber)
-                .map(num => (
+                .filter((dev) => dev.id !== device.id)
+                .flatMap((dev) => dev.assignedNumber)
+                .map((num) => (
                   <option key={num.id} value={num.id}>
                     {num.phoneNumber.number}
                   </option>

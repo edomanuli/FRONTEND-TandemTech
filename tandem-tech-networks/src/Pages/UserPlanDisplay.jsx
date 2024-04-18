@@ -24,6 +24,9 @@ const UserPlanDisplay = () => {
     try {
       const plans = await UserPlan(authToken);
       setUserPlan(Array.isArray(plans) ? plans : [plans]);
+      if (plans.length === 0) {
+        setError("Please add a plan to your account.");
+      }
     } catch (error) {
       setError("Failed to fetch user plans");
       console.error(error);
@@ -44,18 +47,27 @@ const UserPlanDisplay = () => {
       {navigation("/login")}
     </>
   );
+  if (userPlan.length === 0) return (
+    <>
+      <Header />
+      <h3 className="d-flex justify-content-center">No plans found. Please add a plan to your account.</h3>
+    </>
+  );
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>{error}</p>;
 
   return (
     <>
       <Header />
-      <h2 className="d-flex justify-content-center">My Plans</h2>
+      <h2 className="d-flex justify-content-center">MY PLANS</h2>
       <div className="user-plan-container">
         {userPlan.map((plan) => (
           <div className="user-plan-list" key={plan.id}>
             <h3 className="user-plan-name-price">
-              <strong>{plan.planInfo.name}</strong>${plan.planInfo.price}
+              <strong>
+                {plan.planInfo.name} - ID: {plan.id}
+              </strong>
+              ${plan.planInfo.price}
             </h3>
             <p className="user-plan-enrollment">
               <strong>Enrollment Date:</strong> {plan.enrollmentDate}

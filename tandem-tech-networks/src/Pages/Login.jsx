@@ -19,6 +19,7 @@ const Login = () => {
     try {
       const response = await axios.post("https://localhost:5001/api/user/login", { username, password });
       setLoginToken(response.data.token);
+      alert("Login successful.");
       navigation("/home");
     } catch (error) {
       console.error(`Login failed: ${error}`);

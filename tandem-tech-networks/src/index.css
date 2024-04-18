@@ -156,3 +156,9 @@ footer {
   color: #555;
   margin-top: 10px;
 }
+
+/* Footer */
+
+.footer-container i {
+  font-size: 25px;
+}
