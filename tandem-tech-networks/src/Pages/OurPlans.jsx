@@ -31,7 +31,10 @@ const OurPlans = () => {
             <h5 className="plan-device-limit">
               Device Limit: {plan.deviceLimit}
             </h5>
-            <h5 className="plan-data-limit">Data Limit: {plan.dataLimit}GB</h5>
+            <h5 className="plan-data-limit">
+              Data Limit:{" "}
+              {plan.dataLimit === 0 ? "Unlimited" : `${plan.dataLimit}GB`}
+            </h5>
             <p className="plan-description">
               <strong>Plan Description:</strong> {plan.description}
             </p>

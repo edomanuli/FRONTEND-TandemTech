@@ -68,7 +68,7 @@ const AddDeviceForm = () => {
           "Failed to add device."
         );
       } else {
-        setError("You have exceeded the number of devices allowed.Please upgrade your plan.");
+        setError("You have exceeded the number of devices allowed for this plan. Please upgrade your plan.");
       }
     } finally {
       setIsLoading(false);
