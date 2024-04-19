@@ -55,7 +55,7 @@ const UserBillDisplay = () => {
             <strong>Total Bill: ${userBill.total}</strong>
           </h3>
           <p className="bill-details">
-            Due Date: {new Date(userBill.billingDate).toLocaleDateString()}
+            Billing Date: {new Date(userBill.billingDate).toLocaleDateString()}
           </p>
           {userBill.planBills && userBill.planBills.length > 0 && (
             <div className="bill-plans">
