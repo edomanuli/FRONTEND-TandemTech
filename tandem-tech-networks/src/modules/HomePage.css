@@ -1,7 +1,12 @@
 .btn-primary {
-    background-color: #1a030186!important;
+    background-color: #87A824!important;
+    border: none!important;
 }
 
 .btn-primary:hover {
-    background-color: #643021ad!important;
+    background-color: #788943!important;
+}
+
+.mission-text {
+    font-size: 18px;
 }
